@@ -11,27 +11,31 @@ export class User {
     }
 
     async getAllUsers(query?: string) {
-        const data = await getAll("users", query)
-        return data;
+        const data = await getAll("users", query)        
+        return data.rows;
     }
+
     async getUserById(query?: string) {
         const data = await getOne("users", this.id, query)
         return data.rows;
     }
+    
     async createUser() {
         const data = await create("users", "firstname,lastname,email,password",
             `'${this.lastName}', '${this.firstName}', '${this.email}', '${this.password}'`);
-        return data;
+        return data.rows;
     }
+
     async updateUser() {
         const ar: any = [];
         Object.entries(this).forEach(kv => kv[1] === '' || kv[0] === 'id' ? '' : ar.push(` ${kv[0]} = '${kv[1]}'`))
         const data = await update("users", `${ar.toString()}`, this.id)
-        return data;
+        return data.rows;
     }
+
     async deleteUser() {
         const data = await remove("users", this.id)
-        return data
+        return data.rows;
     }
 
 }
