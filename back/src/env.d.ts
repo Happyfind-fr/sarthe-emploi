@@ -1,6 +1,3 @@
-
-export { };
-
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
@@ -14,8 +11,12 @@ declare global {
             INDEED_CLIENT_ID?: string;
             INDEED_CLIENT_SECRET?: string;
             INDEED_SCOPE?: string;
+
+            POSTGRES_CONNECTION?: string;
+            PORT?: string;
+            SECRET?: string;
         }
     }
 
-
+    export { }
 }
