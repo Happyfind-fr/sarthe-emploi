@@ -2,8 +2,20 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-
+import { io } from 'socket.io-client';
+const socket = io(process.env.API_ENDPOINT!, {
+  path: "/socket",
+  transports: ["websocket"],
+  withCredentials: true,
+  extraHeaders: {
+    "headercustom": "tutu"
+  }
+});
 const Home: NextPage = () => {
+
+  const click = () => {
+    socket.connect()
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -13,8 +25,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <button onClick={() => click}>TEST</button>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Bienvenu sur <a>Sarthemploi</a>
         </h1>
 
         <p className={styles.description}>

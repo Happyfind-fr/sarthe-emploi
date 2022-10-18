@@ -1,13 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-
+import axios from 'axios';
 type Data = {
-  name: string
+  name: any
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  const re = await axios.get(process.env.API_GET_ALL_USERS!);
+  res.status(200).json({ name: re })
 }

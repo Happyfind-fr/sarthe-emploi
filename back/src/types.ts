@@ -6,3 +6,10 @@ export interface userProps {
     password?: string;
     avatar?: string;
 }
+
+export interface SocketInstanceProps {
+    users: any;
+    messages: any;
+    rooms: any;
+    sessions: any;
+}

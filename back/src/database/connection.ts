@@ -1,4 +1,5 @@
-import { Client } from 'pg';
+import { Pool } from 'pg';
+
 require('dotenv').config();
 
-export const client = new Client(`${process.env.POSTGRES_CONNECTION}`)
+export const client = new Pool({ max: 2000, connectionString: process.env.POSTGRES_CONNECTION, idleTimeoutMillis: 30000 });
