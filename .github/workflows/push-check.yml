@@ -40,7 +40,7 @@ jobs:
       
     - name: 'front'
       working-directory: front
-      run: yarn test-dev
+      run: yarn jest
         
     - name: 'back'
       working-directory: back
