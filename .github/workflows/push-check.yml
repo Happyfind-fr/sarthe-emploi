@@ -26,7 +26,8 @@ jobs:
    runs-on: ubuntu-latest
    steps: 
      - name: 'front'
-       run: ls
+       working-directory: front/
+       run: yarn install
      
      - name: 'back'
        working-directory: back
