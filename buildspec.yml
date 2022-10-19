@@ -18,5 +18,8 @@ phases:
 artifacts:
   files:
     - "front/build/**/*"
+    - "front/build/assets/**/*"
+
+  discard-paths: yes
 
 
