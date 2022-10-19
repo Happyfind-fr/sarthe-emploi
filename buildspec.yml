@@ -17,8 +17,7 @@ phases:
         - echo Build completed on `date`  
 artifacts:
   files:
-    - "front/build/**/*"
-    - "front/build/assets/**/*"
+    - "front/build*/**/*"
 
 
 
