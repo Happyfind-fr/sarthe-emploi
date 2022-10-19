@@ -3,5 +3,5 @@ export default function HomePage() {
         <>
             HOME PAGE
         </>
-    )
+    );
 }

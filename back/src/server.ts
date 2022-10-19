@@ -27,7 +27,7 @@ export default class ServerInstance extends SocketInstance {
     constructor() {
         super();
         this.app = app;
-        this.port = 3000;
+        this.port = process.env.PORT!;
         this.server = https.createServer({
             key: fs.readFileSync("src/key.pem"),
             cert: fs.readFileSync('src/cert.pem'),
