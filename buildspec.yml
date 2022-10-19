@@ -18,5 +18,5 @@ phases:
 artifacts:
   type: zip
   files:
-    - "build/*"
-  name: build
+    - "front/build/*"
+
