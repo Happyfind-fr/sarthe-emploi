@@ -26,12 +26,10 @@ jobs:
    runs-on: ubuntu-latest
    steps: 
      - name: 'front'
-       working-directory: ${{ github.workspace }}/front
-       run: yarn install
+       run: pwd
      
      - name: 'back'
-       working-directory: back
-       run: npm install
+       run: ls -la
  
   test:
    runs-on: ubuntu-latest
