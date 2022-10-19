@@ -39,3 +39,19 @@ jobs:
      - name: 'back-tests'
        working-directory: back
        run: npm test
+       
+  Build-And-Deploy:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: 'checkout'
+        uses: actions/checkout@v3
+        
+      - name: 'front-build'
+        working-directory: front
+        run: yarn build
+        
+      - name: 'front-back'
+        working-directory: back
+        run: npm run build
+       
+ 
