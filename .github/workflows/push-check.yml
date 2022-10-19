@@ -21,3 +21,21 @@ jobs:
         uses: actions/checkout@v3
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v2
+        
+  install:
+   runs-on: ubuntu-latest
+   steps: 
+     - name: 'front'
+     - run: cd front && yarn install
+     
+     - name: 'back'
+     - run: cd back && npm install
+ 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'front'
+      - run: cd front && yarn test-dev
+    
+      - name: 'back'
+      - run: cd back && npm test
