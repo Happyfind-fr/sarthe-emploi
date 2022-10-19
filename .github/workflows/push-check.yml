@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  dependency-review:
+  Dependency-Review:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout Repository'
@@ -18,30 +18,24 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v2
         
-  install:
+  Install-And-Test:
    runs-on: ubuntu-latest
    steps: 
      - name: 'checkout'
        uses: actions/checkout@v3
        
-     - name: 'front'
+     - name: 'front-install'
        working-directory: front
        run: yarn install
        
-     - name: 'back'
+     - name: 'front-tests'
+       working-directory: front
+       run: yarn test-dev
+       
+     - name: 'back-install'
        working-directory: back
        run: npm install
- 
-  test:
-   runs-on: ubuntu-latest
-   steps:
-    - name: 'checkout'
-      uses: actions/checkout@v3
-      
-    - name: 'front'
-      working-directory: front
-      run: yarn jest
-        
-    - name: 'back'
-      working-directory: back
-      run: npm test
+         
+     - name: 'back-tests'
+       working-directory: back
+       run: npm test
