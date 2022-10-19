@@ -17,5 +17,6 @@ phases:
         - echo Build completed on `date`  
 artifacts:
   type: zip
-  paths:
+  files:
     - "build/*"
+  name: build
