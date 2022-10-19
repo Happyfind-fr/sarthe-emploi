@@ -52,7 +52,7 @@ jobs:
        
       - name: 'front-build'
         working-directory: front
-        run: yarn build
+        run: yarn build-dev
         
       - name: 'back-install'
         working-directory: back
