@@ -26,16 +26,20 @@ jobs:
    runs-on: ubuntu-latest
    steps: 
      - name: 'front'
-       run: cd front && yarn install
+       working-directory: ./front
+       run: yarn install
      
      - name: 'back'
-       run: cd back && npm install
+       working-directory: ./back
+       run: npm install
  
   test:
    runs-on: ubuntu-latest
    steps:
     - name: 'front'
+      working-directory: ./front
       run: cd front && yarn test-dev
     
     - name: 'back'
+      working-directory: ./back
       run: cd back && npm test
