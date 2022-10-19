@@ -17,5 +17,6 @@ phases:
         - echo Build completed on `date`  
 artifacts:
   files:
-    - "front/build*"
+    - "front/build/**/*"
+
   discard-paths: yes
