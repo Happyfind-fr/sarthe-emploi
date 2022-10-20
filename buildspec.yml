@@ -25,6 +25,7 @@ artifacts:
     - "front/build/manifest.json"
     - "front/build/robots.txt"
     - "front/build/static/**/*"
+ discard-paths: yes
 
 
 
