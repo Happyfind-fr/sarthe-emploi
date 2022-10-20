@@ -14,10 +14,8 @@ phases:
       - yarn build-dev
     post_build:
       commands:
+        - aws s3 sync front/build/ s3://sarthe-emploi-bucket/
         - echo Build completed on `date`  
-artifacts:
-  files:
-    - "front/build/**/*"
 
 
 
