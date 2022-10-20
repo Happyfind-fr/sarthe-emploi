@@ -17,8 +17,14 @@ phases:
         - echo Build completed on `date`  
 artifacts:
   files:
-    - "**/*"
-  discard-paths: yes
+    - "front/build/index.html"
+    - "front/build/manifest.json"
+    - "front/build/favicon.ico"
+    - "front/build/asset-manifest.json"
+    - "front/build/robots.txt"
+    - "front/build/logo192.png"
+    - "front/build/logo512.png"
+    - "front/build/static/**/*"
 
 
 
