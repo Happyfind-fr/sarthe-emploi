@@ -13,7 +13,7 @@ phases:
     commands:
       - echo Build started on `date`
       - yarn build-dev
-      - aws s3 sync build/ s3://arn:aws:s3:eu-west-3:543288910809:accesspoint/sarthe-emploi-access-point
+      - aws s3 sync build/ s3://sarthe-emploi-bucket/
     post_build:
       commands:
         - echo Build completed on `date`  
