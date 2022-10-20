@@ -16,7 +16,7 @@ phases:
       - aws s3 sync build/ s3://sarthe-emploi-bucket/
     post_build:
       commands:
-        - echo Build completed on `date`  
+        - echo Build completedd on `date`  
 
 
 
