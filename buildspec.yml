@@ -24,8 +24,12 @@ artifacts:
     - "front/build/robots.txt"
     - "front/build/logo192.png"
     - "front/build/logo512.png"
-    - "front/build/static/**/*"
   discard-paths: yes
+  
+secondary-artifacts:
+  static:
+    base-directory: "front/build/static"
+    files: "**/*"
 
 
 
