@@ -24,8 +24,8 @@ artifacts:
     - "front/build/logo512.png"
     - "front/build/manifest.json"
     - "front/build/robots.txt"
-    - "front/build/static/**/*"
- discard-paths: yes
+    - "front/build/static*/**"
+  discard-paths: yes
 
 
 
