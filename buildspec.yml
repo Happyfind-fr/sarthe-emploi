@@ -25,6 +25,7 @@ artifacts:
     - "front/build/logo192.png"
     - "front/build/logo512.png"
     - "front/build/static/**/*"
+  discard-paths: yes
 
 
 
