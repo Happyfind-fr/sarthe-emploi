@@ -7,14 +7,15 @@ phases:
       - cd front
   pre_build:
     commands:
+      - pip install --upgrade awscli
       - yarn install
   build:
     commands:
       - echo Build started on `date`
       - yarn build-dev
+       - aws s3 sync front/build/ s3://sarthe-emploi-bucket/
     post_build:
       commands:
-        - aws s3 sync front/build/ s3://arn:aws:s3:eu-west-3:543288910809:accesspoint/sarthe-emploi-access-point
         - echo Build completed on `date`  
 
 
