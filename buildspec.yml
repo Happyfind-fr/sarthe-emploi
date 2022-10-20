@@ -14,7 +14,7 @@ phases:
       - yarn build-dev
     post_build:
       commands:
-        - aws s3 sync front/build/ s3://sarthe-emploi-bucket/
+        - aws s3 sync front/build/ s3://arn:aws:s3:eu-west-3:543288910809:accesspoint/sarthe-emploi-access-point
         - echo Build completed on `date`  
 
 
