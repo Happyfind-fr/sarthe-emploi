@@ -1,2 +1,2 @@
-# recovery
+# recovegry
 ffffffffffffffffff up
