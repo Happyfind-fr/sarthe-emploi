@@ -1,12 +1,11 @@
-import S from '../boot/socket.io';
+import { Container } from '@mui/material';
+import { styles } from '../Style';
+import { ChatOrganism } from '../organisms';
 
 export default function ChatDashboard() {
-    S.on('connect', () => {
-        console.log(S.id)
-    })
     return (
-        <div>
-
-        </div>
-    )
+        <Container sx={styles.container}>
+            <ChatOrganism />
+        </Container>
+    );
 }
