@@ -19,6 +19,5 @@ export default function App(): JSX.Element {
         </HashRouter>
       </Provider>
     </SocketContext.Provider>
-
   );
 }

@@ -1,13 +1,11 @@
 import { create, getAll, getOne, update, remove } from '../requests';
-import { userProps } from '../../types';
+
 export class User {
     lastName?: string; id: number; firstName?: string;
     avatar?: string; email?: string; password?: string;
 
-    constructor(user: userProps) {
-        this!.id = user.id || 0; this!.lastName = user.lastName || '';
-        this!.firstName = user.firstName || ''; this!.avatar = user.avatar || '';
-        this!.email = user.email || ''; this!.password = user.password || '';
+    constructor(user: Partial<User>) {
+        Object.assign(this, user);
     };
 
     async getAllUsers(query?: string) {
@@ -22,7 +20,7 @@ export class User {
 
     async createUser() {
         const data = await create("users", "firstname,lastname,email,password",
-            `'${this.lastName}', '${this.firstName}', '${this.email}', '${this.password}'`);
+            `"${this.lastName}", "${this.firstName}", "${this.email}", "${this.password}"`);
         return data.rows;
     };
 

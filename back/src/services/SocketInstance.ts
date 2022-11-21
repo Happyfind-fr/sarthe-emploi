@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+
 export default class SocketInstance {
     users: any; messages: any; rooms: any;
     sessions: any; io: any;

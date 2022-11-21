@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "target": "ESNext",
+        "target": "ES2022",
         "module": "CommonJS",
         "lib": [
-            "esnext"
+            "ES2022",
+            "ES2022.String"
         ],
         "moduleResolution": "node",
         "noPropertyAccessFromIndexSignature": false,

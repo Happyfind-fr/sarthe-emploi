@@ -4,9 +4,12 @@ export const generateFakeChatData = () => {
     for (let i = 0; i < 7; i++) {
         let object = {
             message: `${faker.lorem.sentence()}`, direction: i % 2 === 0 ? 'left' : 'right',
-            time: faker.date.recent(), avatar: faker.image.avatar()
+            createdAt: faker.date.recent(), avatar: faker.image.avatar()
         }
         table.push(object);
     }
     return table;
 }
+
+// TODO:  name, room, time, etc..
+
