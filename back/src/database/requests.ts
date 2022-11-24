@@ -1,10 +1,10 @@
 import { client } from './connection';
 import { Formatter } from '../services';
-export const create = async (table: string, columns: string, values: any) => {
-    return await client.query(`INSERT INTO ${table} (${columns}) VALUES (${await new Formatter().textEscaper(values)}) RETURNING *;`);
+export const create = async (table: string, columns: string, values: any[]) => {    
+    return await client.query(`INSERT INTO ${table} (${columns}) VALUES (${await new Formatter().textEscaper(values)}) RETURNING *;`,values);
 };
-export const update = async (table: string, values: string, id: number) => {
-    return await client.query(`UPDATE ${table} SET ${values}  WHERE id= ${id};`);
+export const update = async (table: string, columns: string, values: any[], id: number) => {    
+    return await client.query(`UPDATE ${table} SET (${columns}) = (${await new Formatter().textEscaper(values)}) WHERE id= ${id};`,values);
 };
 export const remove = async (table: string, id: number) => {
     return await client.query(`DELETE FROM ${table} WHERE id=${id};`);

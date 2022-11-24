@@ -1,6 +1,6 @@
 import { Company } from "../database/models/";
 import { faker } from '@faker-js/faker';
-
+// test
 export default class CompaniesMigration {
     async migrate(req: any, res: any) {
         const number = 5
