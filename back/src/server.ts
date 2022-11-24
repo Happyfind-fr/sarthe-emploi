@@ -6,13 +6,13 @@ import fs from 'fs';
 import https from 'https';
 import session from 'express-session';
 import sharedsession from 'express-socket.io-session';
-import SocketInstance from "./services/SocketInstance";
+import { SocketInstance } from "./services";
 import dotenv from "dotenv";
 import logger from 'morgan';
 import router from "./router";
+import { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from "./types";
 
-
-dotenv.config()
+dotenv.config();
 const app = express();
 const sess = session({
     secret: "my-secret",
@@ -33,10 +33,10 @@ export default class ServerInstance extends SocketInstance {
             cert: fs.readFileSync('src/cert.pem'),
         }, this.app);
 
-        this.io = new Server(this.server, {
+        this.io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(this.server, {
             path: '/socket',
             cors: {
-                origin: '*',
+                origin: 'http://localhost:3000',
                 methods: ['GET', 'POST'],
                 allowedHeaders: ['headercustom'],
                 credentials: true
@@ -57,17 +57,19 @@ export default class ServerInstance extends SocketInstance {
         });
         this.app.use(sess);
         this.io.use(sharedsession(sess));
-
-        // Routes
-        this.app.use("/", router);
-        app.use("/sd", (req, res) => {
-            res.send('szdok')
+        this.io.on("connection", () => {
+            this.io.emit("user", {
+                name: "test",
+                age: 145
+            })
         })
+        this.app.use("/", router);
     }
 
     run() {
         this.server.listen(this.port, () => {
-            console.log("🚀 ~ file: index.ts ~ line 20 ~ app.listen ~ port", this.port);
+            console.log(" 🚀 Server Is Running on port 🚀 ", `${this.port}`);
         })
+
     }
 }

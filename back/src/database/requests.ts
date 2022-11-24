@@ -1,22 +1,20 @@
 import { client } from './connection';
-
+import { Formatter } from '../services';
 export const create = async (table: string, columns: string, values: any) => {
-    const request = await client.query(`INSERT INTO ${table} (${columns}) VALUES (${values}) RETURNING *;`);
-    return request;
+    return await client.query(`INSERT INTO ${table} (${columns}) VALUES (${await new Formatter().textEscaper(values)}) RETURNING *;`);
 };
 export const update = async (table: string, values: string, id: number) => {
-    const request = await client.query(`UPDATE ${table} SET ${values}  WHERE id= ${id};`);
-    return request;
+    return await client.query(`UPDATE ${table} SET ${values}  WHERE id= ${id};`);
 };
 export const remove = async (table: string, id: number) => {
-    const request = await client.query(`DELETE FROM ${table} WHERE id=${id};`);
-    return request;
+    return await client.query(`DELETE FROM ${table} WHERE id=${id};`);
+};
+export const removeAll = async (table: string) => {
+    return await client.query(`DELETE FROM ${table};`);
 };
 export const getOne = async (table: string, id: number, columns?: string) => {
-    const request = await client.query(`SELECT ${columns ? columns : '*'} FROM ${table} WHERE id=${id};`);
-    return request;
+    return await client.query(`SELECT ${columns ? columns : '*'} FROM ${table} WHERE id=${id};`);
 };
 export const getAll = async (table: string, columns?: string) => {
-    const request = await client.query(`SELECT ${columns ? columns : '*'} FROM ${table} `);
-    return request;
+    return await client.query(`SELECT ${columns ? columns : '*'} FROM ${table}; `);
 };

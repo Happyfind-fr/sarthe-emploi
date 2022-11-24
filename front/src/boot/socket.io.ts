@@ -1,9 +1,8 @@
 import React from 'react';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
-const socket = io(process.env.REACT_APP_API_ENDPOINT!, {
+const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(process.env.REACT_APP_API_ENDPOINT!, {
     path: '/socket',
-    transports: ['websocket'],
     withCredentials: true,
     extraHeaders: {
         // TODO: inclure extra headers ?
@@ -12,3 +11,14 @@ const socket = io(process.env.REACT_APP_API_ENDPOINT!, {
 
 export const SocketContext = React.createContext(socket);
 export default socket;
+
+interface ServerToClientEvents {
+    noArg: () => void;
+    user: any;
+    basicEmit: (a: number, b: string, c: Buffer) => void;
+    withAck: (d: string, callback: (e: number) => void) => void;
+}
+
+interface ClientToServerEvents {
+    hello: () => void;
+}

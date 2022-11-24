@@ -1,8 +1,11 @@
-/front/node_modules/*
 /back/node_modules/*
-/front/env/*
-/front/.env
+/back/bigDump
+/back/latest_dump
 /back/env/*
 /back/.env
-/front/yarn.lock
 /back/package-lock.json
+/front/node_modules/*
+/front/env/*
+/front/.env
+/front/yarn.lock
+
