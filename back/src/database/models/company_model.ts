@@ -25,9 +25,10 @@ export class Company {
     };
 
     async updateCompany() {
-        const ar: any = [];
-        Object.entries(this).forEach(kv => kv[1] === '' || kv[0] === 'id' ? '' : ar.push(` ${kv[0]} = '${kv[1]}'`));
-        const data = await update("companies", `${ar.toString()}`, this.id!);
+        let columns: any = [];
+        let values: any = [];
+        Object.entries(this).forEach(kv => kv[1] === undefined || kv[1] === '' || kv[0] === 'id' ? '' : (columns.push(kv[0]) && values.push(kv[1])));
+        const data = await update("companies", columns, values, this.id!);
         return data.rows;
     };
 
