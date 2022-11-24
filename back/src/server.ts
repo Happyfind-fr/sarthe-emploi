@@ -67,6 +67,7 @@ export default class ServerInstance extends SocketInstance {
     }
 
     run() {
+        process.on('SIGTSTP', () => this.server.close());
         this.server.listen(this.port, () => {
             console.log(" 🚀 Server Is Running on port 🚀 ", `${this.port}`);
         })
