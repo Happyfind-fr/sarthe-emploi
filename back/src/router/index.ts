@@ -1,6 +1,7 @@
 import { Router } from "express";
 import * as Handler from '../handlers';
 import * as Migration from '../migrations';
+import * as Middleware from '../middlewares';
 const router = Router();
 
 router.route('/auth').post(new Handler.JobsProviders().auth);
@@ -14,7 +15,7 @@ router.route('/user/:id')
 
 router.route('/token/create').post(new Handler.Token().create);
 router.route('/offers').get(new Handler.JobsProviders().fetch_offers);
-router.route('/offers/migrate').post(new Migration.OffersMigration().migrate);
+router.route('/offers/migrate').post(new Middleware.HostWhitelist().isWhitelisted, new Migration.OffersMigration().migrate);
 
 router.route('/companies').get(new Handler.Company().getAll);
 router.route('/companies/migrate').post(new Migration.CompaniesMigration().migrate);
