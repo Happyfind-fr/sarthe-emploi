@@ -19,8 +19,8 @@ export class Company {
     async createCompany() {
         let columns: any = [];
         let values: any = [];
-        Object.entries(this).forEach(kv => kv[1] === '' || kv[1] === undefined ? '' : (columns.push(kv[0]) && values.push(typeof (kv[1]) === 'number' ? kv[1] : `"${kv[1]}"`)))
-        const data = await create("companies", columns.toString(), values.toString());
+        Object.entries(this).forEach(kv => kv[1] === '' || kv[1] === undefined ? '' : (columns.push(kv[0]) && values.push(typeof kv[1] === "number" || typeof kv[1] === 'boolean' ? kv[1] : `${kv[1]}`)))
+        const data = await create("companies", columns, values);
         return data.rows;
     };
 
@@ -28,7 +28,7 @@ export class Company {
         let columns: any = [];
         let values: any = [];
         Object.entries(this).forEach(kv => kv[1] === undefined || kv[1] === '' || kv[0] === 'id' ? '' : (columns.push(kv[0]) && values.push(kv[1])));
-        const data = await update("companies", columns, values, this.id!);
+        const data = (columns.length === 0 || values.length === 0) ? { rows: ["null"] } : await update("companies", columns, values, this.id!);
         return data.rows;
     };
 

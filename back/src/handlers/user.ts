@@ -5,24 +5,24 @@ export default class UserControllers {
   async get(req: { params: { id: number; }; }, res: Response) {
     try {
       // TODO: getUserById = 'firstName' ?
-      return res.send({ data_result: await new User({ id: req.params.id }).getUserById('firstName') });
+      return res.send({ data_result: await new User({ id: req.params.id }).getUserById() });
     } catch (error) { throw error; };
   };
 
-  async getAll(req: Request, res: Response) {
+  async get_all(req: Request, res: Response) {
     try {
       return res.send({ data_result: await new User({}).getAllUsers() });
     } catch (error) { throw error; };
   };
 
-  async create(req: { body: { firstName: string, lastName: string, email: string, password: string } }, res: Response) {
+  async post_create(req: { body: { firstName: string, lastName: string, email: string, password: string } }, res: Response) {
     const { firstName, lastName, email, password } = req.body;
     try {
       return res.send({ data_result: await new User({ lastName, email, firstName, password }).createUser() });
     } catch (error) { throw error; };
   };
 
-  async update(req: { body: { firstName: string, lastName: string, email: string, password: string }, params: { id: number; }; }, res: Response) {
+  async put_update(req: { body: { firstName: string, lastName: string, email: string, password: string }, params: { id: number; }; }, res: Response) {
     const { firstName, lastName, email, password } = req.body;
     try {
       return res.send({ data_result: await new User({ id: req.params.id, firstName, lastName, email, password }).updateUser() });

@@ -20,15 +20,15 @@ export class Offer {
     async createOffer() {
         let columns: any = [];
         let values: any = [];
-        Object.entries(this).forEach(kv => kv[1] === '' || kv[1] === undefined ? '' : (columns.push(kv[0]) && values.push(typeof (kv[1]) === 'number' ? kv[1] : `"${kv[1]}"`)))
-        const data = await create("offers", columns.toString(), values);
+        Object.entries(this).forEach(kv => kv[1] === '' || kv[1] === undefined ? '' : (columns.push(kv[0]) && values.push(typeof kv[1] === 'number' || typeof kv[1] === 'boolean' ? kv[1] : `${kv[1]}`)))
+        const data = await create("offers", columns, values);
         return data.rows;
     };
 
     async updateOffer() {
         let columns: any = [];
         let values: any = [];
-        Object.entries(this).forEach(kv => kv[1] === undefined || kv[1] === '' || kv[0] === 'id' ? '' : (columns.push(kv[0]) && values.push(kv[1])) );
+        Object.entries(this).forEach(kv => kv[1] === undefined || kv[1] === '' || kv[0] === 'id' ? '' : (columns.push(kv[0]) && values.push(kv[1])));
         const data = await update("offers", columns, values, this.id!);
         return data.rows;
     };

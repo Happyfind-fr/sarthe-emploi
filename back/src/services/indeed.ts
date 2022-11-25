@@ -16,11 +16,11 @@ export default class Indeed {
 
         } catch (error) { return { "error": error } };
     }
+
     async indeed_fetch_offers(token: any) {
         try {
             const { INDEED_API_ENDPOINT } = process.env;
-            console.log(token.value)
-            const response = await axios.get('https://secure.indeed.com/v2/api/appinfo', {
+            const response = await axios.get(INDEED_API_ENDPOINT!, {
                 headers: {
                     Authorization: 'Bearer ' + token.value
                 }

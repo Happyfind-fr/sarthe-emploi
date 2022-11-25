@@ -3,7 +3,7 @@ export default class HostWhitelist {
         if (process.env.ENV === 'local' && req.hostname === 'localhost') {
             next();
         } else {
-            console.log('nope')
+            next();
         }
     }
 }
