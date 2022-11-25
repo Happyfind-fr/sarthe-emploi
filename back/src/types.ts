@@ -54,3 +54,11 @@ export interface SocketData {
     name: string;
     age: number;
 }
+
+export interface IndexSignature {
+    [key: string]: any;
+}
+
+export interface IRoute<T> {
+    [key: string]: T;
+}

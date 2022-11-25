@@ -1,7 +1,7 @@
 import { Offer } from "../database/models/";
 import { faker } from '@faker-js/faker';
 
-export default class OffersMigration {
+export default class OfferMigration {
     async migrate(req: any, res: any) {
         const number = 50
         for (let i = 0; i < number; i++) {
