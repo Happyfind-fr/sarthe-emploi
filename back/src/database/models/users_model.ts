@@ -19,7 +19,7 @@ export class User {
     };
 
     async createUser() {
-        const data = await create("users", "firstname,lastname,email,password", [this.lastName,this.firstName,this.email,this.password]);
+        const data = await create("users", ["firstname,lastname,email,password"], [this.lastName, this.firstName, this.email, this.password]);
         return data.rows;
     };
 
@@ -27,7 +27,7 @@ export class User {
         let columns: any = [];
         let values: any = [];
 
-        Object.entries(this).forEach(kv => kv[1] === undefined || kv[1] === '' || kv[0] === 'id' ? '' : (columns.push(kv[0]) && values.push(kv[1])) );
+        Object.entries(this).forEach(kv => kv[1] === undefined || kv[1] === '' || kv[0] === 'id' ? '' : (columns.push(kv[0]) && values.push(kv[1])));
         const data = await update("users", columns, values, this.id);
         return data.rows;
     };

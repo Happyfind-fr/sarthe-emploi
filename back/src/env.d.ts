@@ -15,8 +15,13 @@ declare global {
             POSTGRES_CONNECTION?: string;
             PORT?: string;
             SECRET?: string;
+            SESSION_SECRET?: string;
+
+            SOCKET_PATH?: string;
+            ALLOWED_METHODS?: string;
         }
     }
 
-    export { }
 }
+
+export { }

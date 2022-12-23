@@ -14,7 +14,7 @@ export class Token {
     };
 
     async createToken() {
-        const data = await create("tokens", "name,value,scopes", [this.name,this.value,this.scope]);
+        const data = await create("tokens", ["name,value,scopes"], [this.name, this.value, this.scope]);
         return data.rows;
     };
 
