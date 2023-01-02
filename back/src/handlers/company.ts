@@ -1,5 +1,6 @@
 import { Company } from '../database/models';
 import { Request, Response } from "express";
+import { Formatter } from '../services';
 
 export default class CompanyControllers {
 
@@ -11,7 +12,8 @@ export default class CompanyControllers {
 
     async get_all(req: Request, res: Response) {
         try {
-            return res.send({ data_result: await new Company({}).getAllCompanies() });
+            const data: any = await new Formatter().checkQuery(req)
+            return res.send({ data_result: await new Company({}).getAllCompanies(data.pagesize, data.oldlimit) });
         } catch (error) { throw error; };
     };
 

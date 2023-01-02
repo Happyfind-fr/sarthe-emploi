@@ -6,8 +6,8 @@ export class Company {
 
     constructor(Company: Partial<Company>) { Object.assign(this, Company) };
 
-    async getAllCompanies(query?: string) {
-        const data = await getAll("companies", query);
+    async getAllCompanies(pageSize:number, oldLimit:number,query?: string) {
+        const data = await getAll(pageSize, oldLimit, "companies", query);
         return data.rows;
     };
 

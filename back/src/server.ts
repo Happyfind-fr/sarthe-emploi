@@ -7,7 +7,9 @@ import session from 'express-session';
 import dotenv from 'dotenv';
 import logger from 'morgan';
 import https from 'https';
+import cors from 'cors';
 import fs from 'fs';
+// import rateLimit from 'express-rate-limit';
 
 const app = express();
 const sess = session({
@@ -30,14 +32,16 @@ export default class ServerInstance extends SocketInstance {
     };
 
     config() {
+        // this.app.use('/api/', rateLimit({ windowMs: 5 * 60 * 1000, max: 100 }));
         this.app.use(logger('dev'));
         this.app.use(urlencoded({ extended: true }));
         this.app.use(json());
+        this.app.use(cors({origin: ['http://localhost:3000'], credentials: true}));
         this.app.all('/*', setHeaders);
         this.app.use(sess);
         this.io.use(sharedsession(sess));
         this.io.on("connection", () => this.sendHello);
-        this.app.use(requestHandler.bind(this.app));
+        this.app.use('/api',requestHandler.bind(this.app));
     };
 
     run() {

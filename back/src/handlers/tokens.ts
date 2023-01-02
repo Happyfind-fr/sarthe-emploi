@@ -1,5 +1,6 @@
 import { Token } from '../database/models';
 import { Request, Response } from "express";
+import { Formatter } from '../services';
 
 export default class TokenControllers {
     async get(req: any, res: any) {
@@ -7,9 +8,10 @@ export default class TokenControllers {
     }
 
     async get_all(req: Request, res: Response) {
-        console.log(req)
+        // console.log(req)
         try {
-            return res.send({ data_result: await new Token({}).getAllTokens() });
+            const data: any = await new Formatter().checkQuery(req)
+            return res.send({ data_result: await new Token({}).getAllTokens(data.pagesize, data.oldlimit) });
         } catch (error) { throw error; };
     };
 

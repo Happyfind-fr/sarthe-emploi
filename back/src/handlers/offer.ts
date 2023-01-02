@@ -11,17 +11,18 @@ export default class OffersControllers {
   }
 
   async get_all(req: Request, res: Response) {
-    // console.log('getAll', req)
+    console.log('getAllokk')
     let arr = new Array();
 
     try {
+      const data: any = await new Formatter().checkQuery(req)
       // const tokens = await new Token({}).getAllTokens();
       // await Promise.all(tokens.map(async (token: any, i: number) => {
       //   token.name === 'INDEED_access_token' ? arr.push(await new Indeed().indeed_fetch_offers(tokens[i])) : "";
       // }))
       // console.log("TABLEAU D'OFFRES:", arr)
       res.statusMessage = "Internal Server Error";
-      res.status(200).send({ name: await new Offer({}).getAllOffers() })
+      res.status(200).send({ data: await new Offer({}).getAllOffers(data.pagesize,data.oldlimit) })
     } catch (error) { throw error };
   }
 

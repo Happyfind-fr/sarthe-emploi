@@ -8,8 +8,8 @@ export class User {
         Object.assign(this, user);
     };
 
-    async getAllUsers(query?: string) {
-        const data = await getAll("users", query);
+    async getAllUsers(pageSize:number, oldLimit:number, query?: string) {
+        const data = await getAll(pageSize, oldLimit, "users", query);
         return data.rows;
     };
 

@@ -1,5 +1,6 @@
 import { User } from '../database/models';
 import { Request, Response } from "express";
+import { Formatter } from '../services';
 
 export default class UserControllers {
   async get(req: { params: { id: number; }; }, res: Response) {
@@ -11,7 +12,8 @@ export default class UserControllers {
 
   async get_all(req: Request, res: Response) {
     try {
-      return res.send({ data_result: await new User({}).getAllUsers() });
+      const data: any = await new Formatter().checkQuery(req)      
+      return res.send({ data_result: await new User({}).getAllUsers(data.pagesize, data.oldlimit) });
     } catch (error) { throw error; };
   };
 

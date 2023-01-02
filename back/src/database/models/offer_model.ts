@@ -7,8 +7,8 @@ export class Offer {
 
     constructor(offer: Partial<Offer>) { Object.assign(this, offer) };
 
-    async getAllOffers(query?: string) {
-        const data = await getAll("offers", query);
+    async getAllOffers(pageSize:number, oldLimit:number, query?: string) {
+        const data = await getAll(pageSize, oldLimit, "offers", query);
         return data.rows;
     };
 

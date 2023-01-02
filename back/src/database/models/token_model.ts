@@ -8,8 +8,8 @@ export class Token {
         this!.scope = token.scope || '';
     };
 
-    async getAllTokens(query?: string) {
-        const data = await getAll("tokens", query);
+    async getAllTokens(pageSize:number, oldLimit:number, query?: string) {
+        const data = await getAll(pageSize, oldLimit, "tokens", query);
         return data.rows;
     };
 

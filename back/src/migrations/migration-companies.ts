@@ -9,7 +9,7 @@ export default class CompanyMigration {
                 {
                     siret: Number(faker.finance.account(5)), name: faker.company.name(),
                     city: faker.address.city(), logo: faker.image.avatar(),
-                    email: faker.internet.email(), isVerified: false, recruiter: Number(faker.finance.account(20))
+                    email: faker.internet.email(), isVerified: false, recruiter: Number(faker.finance.account(5))
                 }).createCompany();
 
         }
