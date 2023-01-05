@@ -1,0 +1,16 @@
+@media (max-width: 500px) {
+    .tabs-nav {
+      display: none!important;
+    }
+    .bottom-nav{
+        display: flex!important;
+    }
+    .tabs-content{
+        height: 65vh;
+    }
+} 
+@media (min-width: 400px) {
+    .bottom-nav{
+        display: none!important;   
+    }
+}

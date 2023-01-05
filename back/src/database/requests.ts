@@ -17,7 +17,5 @@ export const getOne = async (table: string, id: number, columns?: string) => {
     return await client.query(`SELECT ${columns ? columns : '*'} FROM ${table} WHERE id=${id};`);
 };
 export const getAll = async (pageSize:number, oldLimit:number, table: string, columns?: string) => {
-    const query = `SELECT ${columns ? columns : '*'} FROM ${table} ORDER BY id LIMIT ${pageSize} OFFSET ${oldLimit};`;
-    const result = await client.query(query);
-    return result;
+    return await client.query(`SELECT ${columns ? columns : '*'} FROM ${table} ORDER BY id LIMIT ${pageSize} OFFSET ${oldLimit};`)
 };

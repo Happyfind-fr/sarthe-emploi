@@ -4,12 +4,12 @@ import axios from 'axios';
 export const offerSlice = createSlice({
     name: 'offers',
     initialState: {
-        listOffers: []
+        list: []
     },
     reducers: {
         getOfferAll: (state:any, action:any) => {
             // Ensuite nous integrons nos data dans le state listOffer
-            state.listOffers=state.listOffers.concat(action.payload.data) 
+            state.list=state.list.concat(action.payload.data) 
         },
     },
 })
